@@ -1,2 +1,12 @@
-# infant_template_paper
-Code used for our infant template paper (2020)
+# Intracranial recordings reveal ubiquitous in-phase and in-antiphase functional connectivity between homotopic brain regions in humans
+
+This repository contain the code used for the analysis which results are reported in the paper titled "Intracranial recordings reveal ubiquitous in-phase and in-antiphase functional connectivity between homotopic brain regions in humans", currently in press at [journal of neuroscience research](https://onlinelibrary.wiley.com/journal/10974547). Preprint available on [BioRxiv](https://www.biorxiv.org/content/10.1101/2020.06.19.162065v2).
+
+## Abstract
+
+Whether neuronal populations exhibit zero-lag (in-phase or in-antiphase) functional connectivity is a fundamental question when conceptualizing communication between cell assemblies. It also has profound implications on how we assess such interactions. Given that the brain is a delayed network due to the finite conduction velocity of the electrical impulses traveling across its fibers, the existence of long-distance zero-lag functional connectivity may be considered improbable. However, in this study, using human intracranial recordings we demonstrate that most interhemispheric connectivity between homotopic cerebral regions is zero-lagged and that this type of connectivity is ubiquitous. Volume conduction can be safely discarded as a confounding factor since it is known to drop almost completely within short inter-electrode distances (< 20 mm) in intracranial recordings. This finding should guide future electrophysiological connectivity studies and highlight the importance of considering the role of zero-lag connectivity in our understanding of communication between cell assemblies.
+
+## Significance statement 
+
+By analysing the functional connectivity between pairs of intracranial electrodes, we demonstrate that corresponding regions from the two cerebral hemispheres show oscillatory activity synchronized without any delay. Most often, these synchronized oscillations have an inverted amplitude, suggesting that the hemispheres inhibit one another in alternance. The existence of such synchronous activity between homotopic brain regions has important implications on how we understand communication between brain regions and on how we assess neuronal functional connectivity. Our results show that controlling the confounding effect of volume conduction by discarding instantaneous synchrony may result in missing important brain dynamics.
+
