@@ -11,8 +11,10 @@ import argparse
 
 dataset_name="eegip_london"
 
-subjects = ["ANTS9-0Months3T", "ANTS12-0Months3T", "ANTS15-0Months3T", "ANTS2-0Weeks3T", "ANTS18-0Months3T", "ANTS2-0Years3T",
-            "ANTS1-0Months3T", "ANTS2-0Months3T", "ANTS3-0Months3T",
+subjects = ["ANTS3-0Months3T", "ANTS10-5Months3T", "ANTS9-0Months3T",
+            "ANTS12-0Months3T", "ANTS15-0Months3T",
+            "ANTS2-0Weeks3T", "ANTS18-0Months3T", "ANTS2-0Years3T",
+            "ANTS1-0Months3T", "ANTS2-0Months3T",
             "ANTS4-5Months3T", "ANTS6-0Months3T", "ANTS7-5Months3T"]
 
 config = {"atlas":
@@ -37,7 +39,7 @@ template_check_path = Path("/home/oreillyc/scratch/template_check/")
 derivative_root = Path("/home/oreillyc/projects/def-emayada/eegip/london/derivatives/lossless/derivatives/oreillyc")
 
 analysis = Analysis(dataset_name, configs=[config])
-montage_name = "GSN-HydroCel-129-montage.fif"
+montage_name = "HGSN128-montage.fif"
 
 
 def get_event_types(recording):
@@ -73,15 +75,10 @@ def compute_one_smodels(no_subject, recompute=False):
 
     print("Processing template ", template)
 
-    fs_subject = template + "_brain"
+    fs_subject = template
     fname_montage = subject_dir / fs_subject / montage_name
 
     recording = dataset_mng.dataset.recordings[recording_name]
-
-    #if fname_montage is not None:
-    #    recording.montage = mne.channels.read_custom_montage(str(fname_montage), head_size=None,
-    #                                                        coord_frame="head")
-    recording.montage = mne.channels.read_dig_fif(fname_montage)
 
     smodel = recording.subject.add_smodel(name=fs_subject, fs_subject=fs_subject,
                                           type_=model_type, exists="return",
@@ -127,7 +124,7 @@ def extract_sources_for_a_recording(no_record):
 
         print("Processing template ", template)
 
-        fs_subject = template + "_brain"
+        fs_subject = template
         derivative_name = "template_validation_" + template
 
         # The montage is saved with electrodes already placed in the correct positions
@@ -139,11 +136,16 @@ def extract_sources_for_a_recording(no_record):
             continue
 
         recording.montage = mne.channels.read_dig_fif(str(subject_dir / fs_subject / montage_name))
+        recording.montage.ch_names = ["E" + str(int(ch_name[3:])) for ch_name in recording.montage.ch_names]
+        recording.montage.ch_names[128] = "Cz"
+
         try:
+            recording.get_artifact("preprocessed_raw", recompute=True)
             recording.get_artifact("events", recompute=True)
             recording.get_artifact("epochs", recompute=True)
         except FileNotFoundError:
             continue
+
 
         # For cases where one of the event_str has no valid epochs
         if all_files_computed(recording, recording_name, template, event_strs=None):
@@ -152,6 +154,12 @@ def extract_sources_for_a_recording(no_record):
         smodel = recording.subject.add_smodel(name=fs_subject, fs_subject=fs_subject,
                                               type_=model_type, exists="return",
                                               derivative_root=derivative_root)
+
+        smodel.ico = None
+        smodel.bem_model
+        smodel.bem_solution
+        smodel.volume_src
+        smodel.surface_src        
 
         print(fs_subject)
         fmodel = recording.add_fmodel(smodel, name=fs_subject, exists="return")
