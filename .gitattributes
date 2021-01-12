@@ -1,13 +1,1 @@
-Templates/ANTS2-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS2-0Weeks3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS2-0Years3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS3-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS4-5Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS6-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS10-5Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS12-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS7-5Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS18-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS9-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS1-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
-Templates/ANTS15-0Months3T.zip filter=lfs diff=lfs merge=lfs -text
+
